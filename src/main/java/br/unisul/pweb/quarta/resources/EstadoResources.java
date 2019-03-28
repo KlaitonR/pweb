@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.unisul.pweb.quarta.domain.Cidade;
 import br.unisul.pweb.quarta.domain.Estado;
+import br.unisul.pweb.quarta.dtos.CidadeDTO;
 import br.unisul.pweb.quarta.dtos.EstadoDTO;
+import br.unisul.pweb.quarta.services.CidadeService;
 import br.unisul.pweb.quarta.services.EstadoService;
 
 @RestController
@@ -23,6 +26,9 @@ public class EstadoResources {
 
 	@Autowired
 	private EstadoService service;
+	
+	@Autowired
+	private CidadeService cidadeservice;
 	
 	//BUSCAR POR ID
 		@RequestMapping(value="/{id}",method=RequestMethod.GET)
@@ -47,7 +53,6 @@ public class EstadoResources {
 			obj = service.update(obj);
 			return ResponseEntity.noContent().build();
 		}
-
 		
 		//EXCLUIR
 		@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
@@ -65,5 +70,11 @@ public class EstadoResources {
 			return ResponseEntity.ok().body(listaDTO);
 		}
 
-	
+		//LISTAR CIDADES DE UM ESTADO
+				@RequestMapping(value="/{estadoId}/cidades", method=RequestMethod.GET)
+				public ResponseEntity<List<CidadeDTO>> findCidades(@PathVariable Integer estadoId) {
+					List<Cidade> list = cidadeservice.findByEstado(estadoId);
+					List<CidadeDTO> listDto = list.stream().map(obj -> new CidadeDTO(obj)).collect(Collectors.toList());  
+					return ResponseEntity.ok().body(listDto);
+				}
 }
