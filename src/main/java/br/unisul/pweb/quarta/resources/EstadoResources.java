@@ -21,7 +21,7 @@ import br.unisul.pweb.quarta.services.CidadeService;
 import br.unisul.pweb.quarta.services.EstadoService;
 
 @RestController
-@RequestMapping(value = "/estado")
+@RequestMapping(value = "/estados")
 public class EstadoResources {
 
 	@Autowired

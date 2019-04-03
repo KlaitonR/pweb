@@ -1,6 +1,7 @@
 package br.unisul.pweb.quarta.domain;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,8 +42,6 @@ public class Categoria implements Serializable{
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-	
-	
 
 	public Integer getId() {
 		return id;
