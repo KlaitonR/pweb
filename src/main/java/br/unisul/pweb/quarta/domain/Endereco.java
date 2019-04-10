@@ -1,4 +1,4 @@
-package br.unisul.pweb.quarta.domain.ENUM;
+package br.unisul.pweb.quarta.domain;
 
 import java.io.Serializable;
 
@@ -10,9 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import br.unisul.pweb.quarta.domain.Cidade;
-import br.unisul.pweb.quarta.domain.Cliente;
 
 @Entity
 public class Endereco implements Serializable{

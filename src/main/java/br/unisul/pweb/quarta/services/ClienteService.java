@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.unisul.pweb.quarta.domain.Cidade;
 import br.unisul.pweb.quarta.domain.Cliente;
-import br.unisul.pweb.quarta.domain.ENUM.Endereco;
+import br.unisul.pweb.quarta.domain.Endereco;
 import br.unisul.pweb.quarta.domain.ENUM.TipoCliente;
 import br.unisul.pweb.quarta.dtos.ClienteDTO;
 import br.unisul.pweb.quarta.dtos.ClienteNewDTO;
@@ -74,6 +74,11 @@ public class ClienteService {
 		obj.setId(null);
 		obj = repo.save(obj);
 		enderecoRepository.saveAll(obj.getEnderecos());
+		return obj;
+	}
+	
+	public Cliente findByEmail(String email) {
+		Cliente obj = repo.findByEmail(email);
 		return obj;
 	}
 	
