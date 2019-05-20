@@ -1,12 +1,12 @@
 package br.unisul.pweb.quarta.services;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.unisul.pweb.quarta.domain.Categoria;
 import br.unisul.pweb.quarta.domain.Cidade;
 import br.unisul.pweb.quarta.domain.Cliente;
@@ -30,10 +30,8 @@ public class DbService {
 	
 	@Autowired
 	private CategoriaRepository catRep;
-
 	@Autowired
 	private EstadoRepository estRep;
-
 	@Autowired
 	private ProdutoRepository prodRep;
 	
@@ -42,16 +40,17 @@ public class DbService {
 	
 	@Autowired
 	private ClienteRepository clieRep;
-	
+
 	@Autowired
 	private EnderecoRepository endRep;
-	
+
+
 	@Autowired 
 	private PedidoRepository pedRep;
-	
+
 	@Autowired
 	private ItemPedidoRepository itemPedRep;
-	
+
 	public void inicializaBancoDeDados() throws ParseException {
 
 		Categoria cat1 = new Categoria(null, "Informática");
@@ -65,6 +64,7 @@ public class DbService {
 		Estado e1 = new Estado(null, "Paraná");
 		Estado e2 = new Estado(null, "Santa Catarina");
 		Estado e3 = new Estado(null, "Rio Grande do Sul");
+		Estado e4 = new Estado(null, "São Paulo");
 		
 		Cidade c1 = new Cidade(null, "Curitiba", e1);
 		Cidade c2 = new Cidade(null, "Tubarão", e2);
@@ -84,7 +84,7 @@ public class DbService {
 		Endereco en2 = new Endereco(null, "Hermínio João Santana", "112", "Casa"    , "Pouso Alto", "88735000", cli1, c3);
 		cli1.getEnderecos().addAll(Arrays.asList(en1, en2));
 		
-		estRep.saveAll(Arrays.asList(e1,e2,e3));
+		estRep.saveAll(Arrays.asList(e1,e2,e3,e4));
 		cidRep.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6));
 		
 		clieRep.saveAll(Arrays.asList(cli1));
@@ -101,14 +101,14 @@ public class DbService {
 		
 		catRep.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		prodRep.saveAll(Arrays.asList(p1,p2,p3));
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
 		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, en1);
 		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, en2);
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 		pedRep.saveAll(Arrays.asList(ped1, ped2));
-		
+
 		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
 		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
 		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
@@ -121,7 +121,7 @@ public class DbService {
 		p3.getItens().addAll(Arrays.asList(ip2));
 
 		itemPedRep.saveAll(Arrays.asList(ip1, ip2, ip3));	
-		
+
 	}
-	
+
 }

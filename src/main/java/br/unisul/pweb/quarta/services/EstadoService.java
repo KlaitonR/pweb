@@ -2,10 +2,8 @@ package br.unisul.pweb.quarta.services;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.unisul.pweb.quarta.domain.Estado;
 import br.unisul.pweb.quarta.repositories.EstadoRepository;
 
@@ -45,5 +43,11 @@ public class EstadoService {
 		 // return rep.findAll();
 		 return rep.findAllByOrderByNome();
 	 }
+	 
+	///*LISTAR POR NOME(FILTRAR)
+	 public List<Estado> buscaPorNome(String nome){
+		 return rep.findDistinctByNomeContainingOrderByNome(nome);
+	 }
+	// */
 	 
 }
