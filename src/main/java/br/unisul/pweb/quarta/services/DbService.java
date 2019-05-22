@@ -77,7 +77,7 @@ public class DbService {
 		e2.getCidades().addAll(Arrays.asList(c2, c3, c4));
 		e3.getCidades().addAll(Arrays.asList(c5, c6));
 		
-		Cliente cli1 = new Cliente(null, "Clávison Zapelini", "clavison@gmail.com", "80234690968", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "klaiton Ricken", "klaitonricken@gmail.com", "78384769293", TipoCliente.PESSOAFISICA);
 		cli1.getTelefones().addAll(Arrays.asList("48999939244", "48988120785"));
 		
 		Endereco en1 = new Endereco(null, "Almir Santos Miranda ", "929", "Apto 402", "Dehon"     , "88704110", cli1, c2);
