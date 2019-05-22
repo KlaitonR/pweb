@@ -43,11 +43,12 @@ public class EstadoService {
 		 // return rep.findAll();
 		 return rep.findAllByOrderByNome();
 	 }
+	
 	 
 	///*LISTAR POR NOME(FILTRAR)
 	 public List<Estado> buscaPorNome(String nome){
 		 return rep.findDistinctByNomeContainingOrderByNome(nome);
 	 }
-	// */
+	 // */
 	 
 }

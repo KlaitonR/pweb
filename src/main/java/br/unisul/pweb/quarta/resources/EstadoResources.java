@@ -69,6 +69,7 @@ public class EstadoResources {
 			List<EstadoDTO> listaDTO = lista.stream().map(obj -> new EstadoDTO(obj)).collect(Collectors.toList()); 
 			return ResponseEntity.ok().body(listaDTO);
 		}
+		
 
 		//LISTAR CIDADES DE UM ESTADO
 				@RequestMapping(value="/{estadoId}/cidades", method=RequestMethod.GET)
@@ -89,7 +90,7 @@ public class EstadoResources {
 			return ResponseEntity.ok().body(listaDTO);
 		}
 		
-	//*/
+		//*/
 
 				
 				
