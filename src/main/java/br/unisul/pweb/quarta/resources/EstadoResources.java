@@ -21,7 +21,7 @@ import br.unisul.pweb.quarta.services.CidadeService;
 import br.unisul.pweb.quarta.services.EstadoService;
 
 @RestController
-@RequestMapping(value = "/estados")
+@RequestMapping(value ="/estados")
 public class EstadoResources {
 
 	@Autowired
@@ -79,18 +79,16 @@ public class EstadoResources {
 					return ResponseEntity.ok().body(listDto);
 		}
 				
-		///*FILTRAR POR NOME
-		@RequestMapping(value="/filtro",method=RequestMethod.GET)
-		public ResponseEntity<List<EstadoDTO>> filtrarPorNome(
-			@RequestParam(value = "nome", defaultValue = "") String nome
-			) {
-			String nomeDecoded = URL.decodeParam(nome);
-			List<Estado> lista = service.buscaPorNome(nomeDecoded);
-			List<EstadoDTO> listaDTO = lista.stream().map(obj -> new EstadoDTO(obj)).collect(Collectors.toList()); 
-			return ResponseEntity.ok().body(listaDTO);
-		}
-		
-		//*/
+				//FILTRAR POR NOME
+				@RequestMapping(value="/filtro",method=RequestMethod.GET)
+				public ResponseEntity<List<EstadoDTO>> filtrarPorNome(
+						@RequestParam(value = "nome", defaultValue = "") String nome
+					) {
+					String nomeDecoded = URL.decodeParam(nome);
+					List<Estado> lista = service.buscaPorNome(nomeDecoded);
+					List<EstadoDTO> listaDTO = lista.stream().map(obj -> new EstadoDTO(obj)).collect(Collectors.toList()); 
+					return ResponseEntity.ok().body(listaDTO);
+				}
 
 				
 				

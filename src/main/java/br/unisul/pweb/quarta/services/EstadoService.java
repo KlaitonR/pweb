@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import br.unisul.pweb.quarta.domain.Estado;
 import br.unisul.pweb.quarta.repositories.EstadoRepository;
 
-
 @Service
 public class EstadoService {
 	
@@ -45,10 +44,9 @@ public class EstadoService {
 	 }
 	
 	 
-	///*LISTAR POR NOME(FILTRAR)
+	 //LISTAR POR NOME(FILTRAR)
 	 public List<Estado> buscaPorNome(String nome){
 		 return rep.findDistinctByNomeContainingOrderByNome(nome);
 	 }
-	 // */
 	 
 }
