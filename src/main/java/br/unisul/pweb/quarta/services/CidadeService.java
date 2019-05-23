@@ -5,13 +5,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.unisul.pweb.quarta.domain.Cidade;
+import br.unisul.pweb.quarta.domain.Estado;
 import br.unisul.pweb.quarta.repositories.CidadeRepository;
+import br.unisul.pweb.quarta.repositories.EstadoRepository;
 
 @Service
 public class CidadeService {
 
 	@Autowired
 	private CidadeRepository rep;
+	
+	@Autowired
+	private EstadoService estadoService;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
 
 	public List<Cidade> findByEstado(Integer estadoId) {
 		return rep.findCidades(estadoId);
@@ -22,11 +30,18 @@ public class CidadeService {
 	 Optional<Cidade> obj = rep.findById(id);
 	 return obj.orElse(null);
 	}
+	
+	public Estado buscar(Integer id) {
+		Optional<Estado> obj = estadoRepository.findById(id);
+		return obj.orElse(null);
+	}
 
 	//INSERIR
 	public Cidade insert (Cidade obj) {
-	 obj.setId(null);
-	 return rep.save(obj);
+		obj.setId(null);
+		obj.setEstado(estadoService.find(obj.getEstado().getId()));
+		obj = rep.save(obj);
+		return obj;
 	}
 
 	//ATUALIZAR
